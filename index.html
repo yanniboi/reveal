@@ -2,130 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gender Reveal</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            font-family: sans-serif;
-            background-color: #ffffff;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 1s ease;
-        }
-
-        #container {
-            text-align: center;
-            width: 100%;
-        }
-
-        h1 {
-            font-size: 3rem;
-            color: #333;
-            margin-bottom: 2rem;
-            transition: all 1s ease;
-        }
-
-        button {
-            padding: 1rem 2rem;
-            font-size: 1.5rem;
-            background: #555;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        button:hover {
-            background: #333;
-        }
-
-        .reveal-text {
-            font-size: 4rem;
-            font-weight: bold;
-            color: white;
-            opacity: 0;
-            animation: fadeIn 1.5s forwards 0.5s, pop 0.5s ease-in-out 1.5s;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes pop {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: white;
-            opacity: 0.8;
-            animation: fall 3s linear infinite;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div id="container">
     <h1>Boy or Girl?</h1>
     <button onclick="reveal()">Click to Reveal</button>
     <div id="revealText" class="reveal-text" style="display:none;">It's a Girl!</div>
+    
+    <!-- Audio elements -->
+    <audio id="drumrollSound" preload="auto">
+        <source src="/assets/drumroll.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="celebrationSound" preload="auto">
+        <source src="/assets/cheer.mp3" type="audio/mpeg">
+    </audio>
 </div>
 
-<script>
-    function reveal() {
-        document.body.style.backgroundColor = '#f48fb1'; // Pink
-        document.querySelector('h1').style.opacity = '0';
-        document.querySelector('button').style.display = 'none';
-        const text = document.getElementById('revealText');
-        text.style.display = 'block';
-
-        for (let i = 0; i < 100; i++) {
-            let confetti = document.createElement('div');
-            confetti.classList.add('confetti');
-            confetti.style.left = Math.random() * window.innerWidth + 'px';
-            confetti.style.top = Math.random() * -100 + 'px';
-            confetti.style.backgroundColor = randomColor();
-            confetti.style.animationDuration = 2 + Math.random() * 2 + 's';
-            confetti.style.animationDelay = Math.random() + 's';
-            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-            document.body.appendChild(confetti);
-
-            setTimeout(() => {
-                confetti.remove();
-            }, 5000);
-        }
-    }
-
-    function randomColor() {
-        const colors = ['#ffffff', '#ffe0e9', '#ffb6c1', '#f06292', '#ff80ab'];
-        return colors[Math.floor(Math.random() * colors.length)];
-    }
-</script>
+<script src="script.js"></script>
 </body>
 </html>
