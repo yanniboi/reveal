@@ -8,9 +8,22 @@
 </head>
 <body>
 <div id="container">
-    <h1>Boy or Girl?</h1>
-    <button onclick="reveal()">Click to Reveal</button>
-    <div id="revealText" class="reveal-text" style="display:none;">It's a Girl!</div>
+    <div id="initial-section">
+        <h1>Boy or Girl?</h1>
+        <button onclick="showQuestion()">Click to Reveal</button>
+    </div>
+    
+    <div id="quiz-section" style="display:none;">
+        <div id="question-container">
+            <p>What is baby's favourite food?</p>
+            <input type="text" id="answer-input" placeholder="Enter your answer">
+            <button onclick="checkAnswer()">Submit</button>
+        </div>
+    </div>
+    
+    <div id="reveal-section" style="display:none;">
+        <div id="revealText" class="reveal-text" style="display:none;">It's a Girl!</div>
+    </div>
     
     <!-- Audio elements -->
     <audio id="drumrollSound" preload="auto">
@@ -18,6 +31,9 @@
     </audio>
     <audio id="celebrationSound" preload="auto">
         <source src="/assets/cheer.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="wrongAnswerSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/941/941-preview.mp3" type="audio/mpeg">
     </audio>
 </div>
 
